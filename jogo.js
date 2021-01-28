@@ -155,6 +155,7 @@ function loop() {
 
 
 window.addEventListener('click', function(){
+    //Ao clicar no navegador, verifica se exoste na tela ativa a função de click, se existir chama a função
     if(telaAtiva.click){
         telaAtiva.click();
     }
