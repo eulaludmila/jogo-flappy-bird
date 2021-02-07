@@ -311,6 +311,7 @@ const mensagemGameOver = {
             mensagemGameOver.x, mensagemGameOver.y,
             mensagemGameOver.w, mensagemGameOver.h
         );
+
     }
 }
 
@@ -325,6 +326,7 @@ function mudaParaTela(novaTela) {
     }
 }
 
+
 function criaPlacar(){
     const placar = {
         pontuacao:0,
@@ -333,7 +335,6 @@ function criaPlacar(){
             contexto.textAlign = 'right';
             contexto.fillStyle = 'white';
             contexto.fillText(`Pontuação: ${placar.pontuacao}`,canvas.width - 10,35)
-            
         },
         atualiza(){
             const intervaloFrames = 25;
@@ -341,12 +342,29 @@ function criaPlacar(){
 
             if(passouIntervalo){
                 placar.pontuacao ++;
+                pontuacao = placar.pontuacao;
+                console.log(pontuacao);
             }
                 
         },
     }
 
     return placar;
+}
+
+function criaScorePlacar(){
+    // console.log(pontuacao);
+    const score = {
+        desenha(){
+            contexto.font = '30px "VT323"';
+            contexto.textAlign = 'right';
+            contexto.fillStyle = 'black';
+            contexto.fillText(`${pontuacao}`,240, 145)
+            
+        }
+    }
+
+    return score;
 }
 
 // [Telas]
@@ -398,6 +416,7 @@ Telas.JOGO = {
 Telas.GAME_OVER = {
     desenha() {
         mensagemGameOver.desenha();
+        criaScorePlacar().desenha();
     },
     click() {
         mudaParaTela(Telas.INICIO);
@@ -425,5 +444,5 @@ window.addEventListener('click', function () {
 })
 
 //Começar na tela de início
-mudaParaTela(Telas.GAME_OVER);
+mudaParaTela(Telas.INICIO);
 loop();
